@@ -1,0 +1,107 @@
+generated: '2026-08-17'
+method: searched
+source: https://www.helios.do/securite/
+docs: https://www.helios.do/nos-documents-legaux/
+note: >-
+  helios ships no API, so there is no OpenAPI, GraphQL SDL, AsyncAPI or OAuth surface to derive
+  technical conformance from — every technical entry below is a measured absence, probed rather
+  than assumed. What helios DOES publish is a regulated-fintech posture: ACPR registration as a
+  payment services agent of Okali, FGDR deposit protection, ORIAS insurance-intermediary
+  registration, B Corp certification and société à mission status, plus consumer-facing payment
+  security (3-D Secure, SCA by SMS code and biometrics, an ANSSI-certified remote identity
+  verification provider). NO `Compliance` pointer is emitted: those are corporate, prudential
+  and consumer-protection registrations, not published security/API compliance attestations
+  (no SOC 2, ISO 27001, PCI DSS, HIPAA or FedRAMP claim was found on any helios host), and
+  there is no API for them to attach to.
+standards:
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI or Swagger document on any helios host. /openapi.json, /openapi.yaml,
+    /swagger.json, /v1/openapi.json, /api/openapi.json, /api/v1/openapi.json, /api-docs, /docs
+    and /redoc all returned HTTP 404 on www.helios.do (control probe of a nonsense path also
+    404, so these are real 404s and not a soft-404 catch-all).
+- id: graphql
+  conforms: false
+  evidence: >-
+    https://www.helios.do/graphql returned 404 on GET and on POST of a
+    {__schema{queryType{name}}} introspection query.
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming or webhook surface is documented anywhere on the helios site.
+- id: mcp
+  conforms: false
+  evidence: >-
+    https://www.helios.do/mcp returned 404 to POST {"jsonrpc":"2.0","method":"tools/list"}.
+    No hosted or stdio MCP server was found in any registry or in helios material.
+- id: a2a
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json both 404 on www.helios.do. The
+    blog host answers 200 for those paths but with the marketing HTML shell (soft-404), so no
+    agent card exists.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    /.well-known/oauth-authorization-server, /.well-known/oauth-protected-resource and
+    /.well-known/openid-configuration all 404. Customer authentication is in-app (SMS code plus
+    Touch ID / Face ID biometrics), not an exposed OAuth authorization server.
+- id: psd2-dedicated-interface
+  conforms: false
+  evidence: >-
+    helios publishes no PSD2 / XS2A dedicated interface, developer portal or sandbox of its own.
+    HELIOS SAS is registered in REGAFI under 731225 as a payment services agent of OKALI, the
+    ACPR-approved electronic money institution that services the accounts; no dedicated-interface
+    documentation was found on any helios.do host.
+- id: llms-txt
+  conforms: true
+  evidence: >-
+    https://www.helios.do/llms.txt returns HTTP 200, text/plain, 3,843 bytes — a real
+    llms.txt with a summary, explicit usage instructions for AI assistants, a curated map of
+    authoritative pages, and an explicit do-not-use list (Espace client, inscription). Saved
+    verbatim to llms/helios-llms.txt.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: >-
+    /.well-known/security.txt returned 404 on www.helios.do. The /securite/ page documents
+    consumer fraud measures but names no security contact, vulnerability reporting channel or
+    responsible-disclosure policy.
+- id: 3-d-secure
+  conforms: true
+  evidence: >-
+    /securite/ states card payments use the "protocole 3-D Secure/Verified By Visa", with
+    SecuBan beneficiary verification on transfers and a virtual card for online payments.
+- id: strong-customer-authentication
+  conforms: true
+  evidence: >-
+    /securite/ documents "double authentification: l'envoi d'un code de vérification par SMS et
+    l'authentification biométrique" (Touch ID / Face ID) for account access.
+- id: gdpr
+  conforms: true
+  evidence: >-
+    Politique de protection des données published at
+    https://www.helios.do/documents/Politique_De_Confidentialite.pdf (dated 18/12/2023) from the
+    legal documents index.
+registrations:
+- id: regafi
+  value: '731225'
+  scope: HELIOS SAS as payment services agent of OKALI
+  source: https://www.helios.do/nos-documents-legaux/
+- id: orias
+  value: '20005731'
+  scope: Insurance intermediary registration
+  source: https://www.helios.do/nos-documents-legaux/
+- id: rcs-paris
+  value: '883 111 585'
+  scope: HELIOS SAS company registration
+  source: https://www.helios.do/nos-documents-legaux/
+- id: acpr
+  value: supervised
+  scope: >-
+    Autorité de contrôle prudentiel et de résolution — supervises OKALI (the EMI) and helios's
+    insurance activities. Deposits protected by the FGDR up to EUR 100,000.
+  source: https://www.helios.do/securite/
+- id: b-corp
+  value: certified
+  scope: B Corp certification, stated in the provider's own llms.txt and site copy.
+  source: https://www.helios.do/llms.txt

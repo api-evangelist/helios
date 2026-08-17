@@ -1,0 +1,30 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+provider: helios
+providerId: helios
+generated: '2026-08-17'
+created: '2026-08-17'
+modified: '2026-08-17'
+method: searched
+source: https://www.helios.do/
+tags:
+- Banking
+- Fintech
+- Rate Limiting
+limit_count: 0
+description: >-
+  helios publishes no rate limits, because helios publishes no API. There is no developer
+  portal, no API reference, no machine-readable contract and no API host on any helios.do
+  subdomain, so there is nothing to throttle and no runtime signal (X-RateLimit-*, RateLimit-*,
+  Retry-After) to record.
+notes: >-
+  Honest zero, not an unchecked field. Searched the marketing site, the llms.txt page map, the
+  legal documents index and the help centre; probed every common spec and discovery path on
+  www.helios.do (all 404) and enumerated *.helios.do in certificate transparency (no api.* host).
+sources:
+- url: https://www.helios.do/llms.txt
+  status: 200
+  note: Provider's own AI-facing page map — names no developer, API or integration surface.
+- url: https://www.helios.do/api
+  status: 404
+limits: []

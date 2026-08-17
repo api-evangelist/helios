@@ -1,0 +1,34 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+provider: helios
+providerId: helios
+generated: '2026-08-17'
+created: '2026-08-17'
+modified: '2026-08-17'
+method: searched
+source: https://www.helios.do/nos-documents-legaux/
+docs: https://www.helios.do/documents/conditions_tarifaires.pdf
+tags:
+- Banking
+- Fintech
+- Plans
+plan_count: 0
+description: >-
+  helios publishes NO API access plans, because helios publishes no API. The company is a
+  consumer neobank: its published pricing is a retail banking tariff schedule ("Liste des prix
+  et services", conditions_tarifaires.pdf, dated 13/03/2025) covering current, Premium, joint,
+  youth, Liberté and independent/professional accounts, plus DIT (document d'information
+  tarifaire) PDFs per account type dated 09/10/2025.
+notes: >-
+  Deliberately recorded as plan_count: 0 rather than transcribing the retail tariff schedule.
+  Those are end-customer bank account fees, not machine-consumable API access tiers; entering
+  them here would credit helios with commercial clarity on an API product that does not exist.
+  If helios ever ships a developer program, this file should be re-run against its pricing page.
+sources:
+- url: https://www.helios.do/nos-documents-legaux/
+  status: 200
+  note: Legal documents index listing the tariff schedule and per-account DIT PDFs.
+- url: https://www.helios.do/tarifs/
+  status: 404
+  note: No standalone web pricing page; pricing is published as PDF plus per-product pages.
+plans: []

@@ -1,19 +1,32 @@
 aid: helios
-name: Helios
-description: 'Helios is a company surfaced as a portfolio company of serena and added to the API Evangelist
-  network as a stub for enrichment. Sector: climate-tech. This profile is a lead awaiting the enrichment
-  pipeline.'
+name: helios
+description: >-
+  helios is a French sustainable-banking company (HELIOS SAS, Paris) offering current, Premium,
+  joint, youth, Liberté and independent/professional accounts, a green savings passbook, sustainable
+  life insurance and wooden or recycled-plastic Visa cards through iOS, Android and web. It is a
+  société à mission and a certified B Corp whose promise is that no customer euro finances fossil
+  fuels or polluting industry, and it publishes the list of transition projects it funds. helios is
+  registered in REGAFI under 731225 as a payment services agent of OKALI, the ACPR-approved
+  electronic money institution that services the accounts. It publishes no public API, SDK, webhook
+  or developer portal; the one machine-readable document it serves is an llms.txt AI-usage policy.
+image: https://a.storyblok.com/f/279083/1200x630/38722f8a58/meta-image.png
 url: https://raw.githubusercontent.com/api-evangelist/helios/refs/heads/main/apis.yml
 x-type: company
 x-source: serena-portfolio
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: no-api-surface
 specificationVersion: '0.20'
 created: '2026-08-17'
 modified: '2026-08-17'
 tags:
 - Company
+- Banking
+- Fintech
+- Neobank
+- Sustainable Finance
+- Payments
 - Climate Tech
+- France
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,3 +36,53 @@ maintainers:
 common:
 - type: Website
   url: https://www.helios.do/
+- type: Blog
+  url: https://blog.helios.do/
+- type: HelpCenter
+  url: https://intercom.help/heliosdo/fr/
+- type: Support
+  url: https://www.helios.do/contact/
+- type: SignUp
+  url: https://www.helios.do/inscription/
+- type: Pricing
+  url: https://www.helios.do/documents/conditions_tarifaires.pdf
+- type: TermsOfService
+  url: https://www.helios.do/documents/Conditions_Generales_Helios.pdf
+- type: PrivacyPolicy
+  url: https://www.helios.do/documents/Politique_De_Confidentialite.pdf
+- type: LLMsTxt
+  url: llms/helios-llms.txt
+- type: Conformance
+  url: conformance/helios-conformance.yml
+- type: Plans
+  url: plans/helios-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/helios-rate-limits.yml
+- type: DomainSecurity
+  url: security/helios-domain-security.yml
+x-enrichment:
+  date: '2026-08-17'
+  status: minimal
+  artifacts_added: 6
+  pass: local-v1
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    helios is a consumer neobank that ships only an end-user mobile and web banking app — it
+    publishes no developer portal, API reference, SDK or webhook surface, and as a payment
+    services agent of OKALI (REGAFI 731225) it exposes no PSD2 dedicated interface of its own;
+    /openapi.json, /graphql, /mcp, /api and every /.well-known/ path return a real 404 on
+    www.helios.do (a nonsense control path also 404s, so these are not soft-404s), and
+    certificate-transparency enumeration of *.helios.do lists app, backoffice, blog, email, go,
+    help and meta but no api.* host of any kind.
+  evidence:
+  - url: https://www.helios.do/openapi.json
+    status: 404
+  - url: https://www.helios.do/.well-known/agent-card.json
+    status: 404
+  - url: https://www.helios.do/api
+    status: 404
+  - url: https://www.helios.do/llms.txt
+    status: 200
+  checked: '2026-08-17'

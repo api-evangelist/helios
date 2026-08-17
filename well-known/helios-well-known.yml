@@ -1,0 +1,109 @@
+generated: '2026-08-17'
+method: probed
+source: live GET of /.well-known/*, /llms.txt and common spec paths on every helios host
+summary: >-
+  helios (the French sustainable neobank at helios.do) serves NO /.well-known/ discovery
+  surface on any host — no security.txt, no OIDC or OAuth authorization-server metadata, no
+  api-catalog, no ai-plugin.json and no A2A agent card. Every path returns a real HTTP 404.
+  The ONE machine-readable document helios publishes is /llms.txt (200, text/plain, 3,843
+  bytes) — a French-language AI-usage policy telling assistants which pages are authoritative
+  and which (Espace client, inscription) must not be treated as documentation. No WellKnown or
+  SecurityTxt pointer is emitted, because a recorded absence is not a served surface.
+notes: >-
+  Control probe of https://www.helios.do/zzz-nonexistent-kin-probe-9931 returned 404, confirming
+  the marketing host does not answer with a catch-all 200 — the 404s below are real. The blog
+  host is the opposite case: https://blog.helios.do/ answers HTTP 200 with an HTML shell for
+  EVERY path including /llms.txt, /.well-known/security.txt and /.well-known/agent-card.json
+  (control: /zzz-nonexistent-kin-probe-9931 -> 200, 50,233 bytes). Those are SPA soft-404s and
+  are recorded as misses, not documents. Certificate-transparency enumeration of *.helios.do
+  returned app, app-dev, app-staging, backoffice, backoffice-dev, backoffice-staging, blog,
+  blog-test, email, go, help and meta — and no api.* host of any kind. app.helios.do,
+  backoffice.helios.do, help.helios.do and meta.helios.do do not resolve in public DNS;
+  go.helios.do resolves to Firebase Hosting (199.36.158.100) and answers 400 at the root.
+  robots.txt disallows /espace_client/ and /partenaire/ and those paths were not probed.
+hosts:
+- host: https://www.helios.do
+  documents:
+  - path: /llms.txt
+    status: 200
+    content_type: text/plain
+    file: ../llms/helios-llms.txt
+    description: >-
+      Provider-published llms.txt — company summary, explicit usage instructions for AI
+      assistants, and a curated map of authoritative product, impact, security and legal pages.
+  - path: /robots.txt
+    status: 200
+    content_type: text/plain
+    note: Allows /*, disallows /espace_client/ and /partenaire/. Names sitemap-0.xml.
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /openapi.yaml
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /v1/openapi.json
+    status: 404
+  - path: /api/openapi.json
+    status: 404
+  - path: /api/v1/openapi.json
+    status: 404
+  - path: /api-docs
+    status: 404
+  - path: /docs
+    status: 404
+  - path: /redoc
+    status: 404
+  - path: /api
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /sitemap.xml
+    status: 404
+    note: robots.txt points at /sitemap-0.xml instead.
+  - path: /graphql
+    status: 404
+    note: POST of a __schema introspection query also returned 404.
+  - path: /mcp
+    status: 404
+    note: POST of {"jsonrpc":"2.0","method":"tools/list"} also returned 404.
+- host: https://blog.helios.do
+  documents:
+  - path: /llms.txt
+    status: 200
+    content_type: text/html
+    note: >-
+      SOFT-404, not a document. Body is the marketing-site HTML shell carrying
+      <link rel="canonical" href="https://www.helios.do/llms.txt">. Recorded as a miss.
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    note: Soft-404 HTML shell. Recorded as a miss.
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: text/html
+    note: Soft-404 HTML shell. Recorded as a miss.
+- host: https://go.helios.do
+  documents:
+  - path: /
+    status: 400
+    note: >-
+      Firebase Hosting link-shortener host (199.36.158.100). Not a developer or API surface;
+      no discovery paths probed beyond the root.

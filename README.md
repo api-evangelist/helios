@@ -42,6 +42,10 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Helios is a company surfaced as a portfolio company of serena and added to the API Evangelist network as a stub for enrichment. Sector: climate-tech. This profile is a lead awaiting the enrichment pipeline.
+helios is a French sustainable-banking company (HELIOS SAS, Paris) offering current, Premium, joint, youth, Liberté and independent/professional accounts, a green savings passbook, sustainable life insurance and wooden or recycled-plastic Visa cards through iOS, Android and web. It is a société à mission and a certified B Corp whose promise is that no customer euro finances fossil fuels or polluting industry. helios is registered in REGAFI under 731225 as a payment services agent of OKALI, the ACPR-approved electronic money institution that services the accounts.
+
+**No public API surface.** helios publishes no developer portal, API reference, SDK or webhook surface, and exposes no PSD2 dedicated interface of its own. The one machine-readable document it serves is [`/llms.txt`](https://www.helios.do/llms.txt) — a French-language AI-usage policy captured verbatim in [`llms/`](llms/). Every probe behind that finding is recorded in [`well-known/helios-well-known.yml`](well-known/helios-well-known.yml).
+
+> **Not the same Helios.** This profile is helios.do, the French neobank. It is unrelated to helios.earth (NV5 Geospatial's weather API), Helios Climate Ventures, or any of the open-source projects named Helios. No contract from those hosts belongs here.
 
 Source: portfolio company of [serena](https://github.com/api-evangelist/serena) — https://www.helios.do/
