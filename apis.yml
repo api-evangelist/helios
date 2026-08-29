@@ -9,6 +9,17 @@ description: >-
   registered in REGAFI under 731225 as a payment services agent of OKALI, the ACPR-approved
   electronic money institution that services the accounts. It publishes no public API, SDK, webhook
   or developer portal; the one machine-readable document it serves is an llms.txt AI-usage policy.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://a.storyblok.com/f/279083/1200x630/38722f8a58/meta-image.png
 url: https://raw.githubusercontent.com/api-evangelist/helios/refs/heads/main/apis.yml
 x-type: company
